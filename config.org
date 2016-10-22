@@ -148,7 +148,7 @@
 #+END_SRC
 
 ** ido
-- Better =C-x C-f= and =C-x b=
+- Enable =ido= for better =C-x C-f= and =C-x b=
 #+BEGIN_SRC emacs-lisp
   (require 'ido)
   (ido-mode t)
@@ -172,6 +172,19 @@
 - Replacement for =DocView=
 #+BEGIN_SRC emacs-lisp
   (pdf-tools-install)
+#+END_SRC
+
+** prettify-symbols-mode
+- Define auxilliary functions for adding various unicode symbols to certain language modes
+#+BEGIN_SRC emacs-lisp
+  (defun my/pretty-less-equal()
+        (push '("<=" . ?≤) prettify-symbols-alist))
+
+  (defun my/pretty-greater-equal()
+        (push '(">=" . ?≥) prettify-symbols-alist))
+
+  (defun my/pretty-not-equal()
+        (push '("!=" . ?≠) prettify-symbols-alist))
 #+END_SRC
 
 ** powerline
@@ -257,14 +270,22 @@
 #+END_SRC
 
 ** Java mode
-- Load [[yasnippet][=yasnippet=]] with =java-mode=
+- Load =yasnippet= with =java-mode=
 #+BEGIN_SRC emacs-lisp
   (add-hook 'java-mode-hook 'yas-minor-mode)
 #+END_SRC
 
-- Add =semantic= as a source to [[autocomplete][=autocomplete=]] in =java-mode=
+- Add =semantic= as a source to =autocomplete= in =java-mode=
 #+BEGIN_SRC emacs-lisp
   (add-hook 'java-mode-hook 'my/add-semantic-to-autocomplete)
+#+END_SRC
+
+- Use unicode symbols for some operators with =prettify-symbols-mode=
+#+BEGIN_SRC emacs-lisp
+(add-hook 'java-mode-hook 'prettify-symbols-mode)
+(add-hook 'java-mode-hook 'my/pretty-less-equal)
+(add-hook 'java-mode-hook 'my/pretty-greater-equal)
+(add-hook 'java-mode-hook 'my/pretty-not-equal)
 #+END_SRC
 
 ** LaTeX / AucTeX
@@ -295,6 +316,13 @@
 #+BEGIN_SRC emacs-lisp
   (setq org-agenda-files "~/.emacs.d/org-agenda-files")
 #+END_SRC
+
+*** Appearance
+- Change the three ellipsis to a more expressive symbol
+#+BEGIN_SRC emacs-lisp
+  (setq org-ellipsis " ▶")
+#+END_SRC
+
 *** Code block settings
 - Set up syntax highlighting and native TAB behaviour in =org= code blocks
 #+BEGIN_SRC emacs-lisp
@@ -361,3 +389,4 @@
 #+BEGIN_SRC emacs-lisp
   (setq hy-mode-inferior-lisp-command "~/.local/bin/hy")
 #+END_SRC
+
