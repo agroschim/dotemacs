@@ -1,0 +1,363 @@
+#+TITLE: Emacs Config
+#+options: toc:nil date:nil
+
+* Global configuration
+- Appearance, behaviour and certain global modes are configured here
+
+** package
+- Add the MELPA and the sunrise commander archive to the list of sources for =package= (which is initialized in [[init.el]])
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+  (add-to-list 'package-archives '("SC"    . "http://joseito.republika.pl/sunrise-commander/"))
+#+END_SRC
+
+- Since Emacs 25.1 =package= keeps track of the user installed packages in a custom variable
+
+** custom
+- Set up the file to save custom variables in the be [[file:custom.el][custom.el]]
+#+BEGIN_SRC emacs-lisp
+  (setq custom-file "~/.emacs.d/custom.el")
+  (load custom-file)
+#+END_SRC
+
+** Appearance
+*** General appearance
+- Disable menu bar, tool bar and scrool bar
+#+BEGIN_SRC emacs-lisp
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+#+END_SRC
+
+- Enable line numbers globally
+#+BEGIN_SRC emacs-lisp
+  (global-linum-mode)
+#+END_SRC
+
+- Don't show startup screen (obsolete: now set in [[file:custom.el][custom.el]] as =(inhibit-startup-screen t)=)
+
+*** Theming
+- Diasable variable pitched fonts (non-monospaced fonts) in the theme before loading ([[https://github.com/oneKelvinSmith/monokai-emacs/issues/56][see here]])
+#+BEGIN_SRC emacs-lisp
+  (setq monokai-use-variable-pitch nil)
+#+END_SRC
+
+- Use same height for all faces
+#+BEGIN_SRC emacs-lisp
+  (setq monokai-height-plus-1 1.0
+        monokai-height-plus-2 1.0
+        monokai-height-plus-3 1.0
+        monokai-height-plus-4 1.0
+        monokai-height-minus-1 1.0)
+#+END_SRC
+
+- Set theme to =monokai= (together with =linum-mode= this gives Emacs a Sublime Text like apparence)
+#+BEGIN_SRC emacs-lisp
+  (load-theme 'monokai t)
+#+END_SRC
+
+** Behaviour
+*** General behaviour
+- CUA Mode (binds paste, copy and cut to C-v, C-c, C-x; enables rectangular regions)
+#+BEGIN_SRC emacs-lisp
+  (cua-mode)
+#+END_SRC
+
+- For working dead keys
+#+BEGIN_SRC emacs-lisp
+  (require 'iso-transl)
+#+END_SRC
+
+- Ask for =y-or-n= insted of =yes-or-no=
+#+BEGIN_SRC emacs-lisp
+  (fset 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
+
+*** Key bindings
+- Bind C-x k to =kill-this-buffer= instead of =kill-buffer= which asks for which buffer to kill
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-x k") 'kill-this-buffer)
+#+END_SRC
+
+* Load and configure individual packages
+- Individual packages are loaded and configured here.
+
+** autocomplete
+- Set up =autocomplete=
+#+BEGIN_SRC emacs-lisp
+  (require 'auto-complete)
+  (require 'auto-complete-config)
+  (ac-config-default)
+#+END_SRC
+
+** aspell
+- Set default spellchecking to =aspell=
+#+BEGIN_SRC emacs-lisp
+  (setq-default ispell-program-name "aspell")
+#+END_SRC
+
+** dired
+- Set switches for dired to =-lha= for long format (required by =dired=), human readable file size and all files
+#+BEGIN_SRC emacs-lisp
+  (setq-default dired-listing-switches "-lha")
+#+END_SRC
+
+** electric-pair-mode
+- Automatically inserts parenthesis in pairs
+#+BEGIN_SRC emacs-lisp
+  (electric-pair-mode t)
+#+END_SRC
+
+** eshell
+- A [[http://www.howardism.org/Technical/Emacs/eshell-fun.html][Howardism]] I stole for quickly using the =eshell= in the current directory
+#+BEGIN_SRC emacs-lisp
+  (defun my/eshell-here ()
+    "Opens up a new shell in the directory associated with the
+  current buffer's file. The eshell is renamed to match that
+  directory to make multiple eshell windows easier."
+    (interactive)
+    (let* ((parent (if (buffer-file-name)
+                       (file-name-directory (buffer-file-name))
+                     default-directory))
+           (height (/ (window-total-height) 3))
+           (name   (car (last (split-string parent "/" t)))))
+      (split-window-vertically (- height))
+      (other-window 1)
+      (eshell "new")
+      (rename-buffer (concat "*eshell: " name "*"))))
+    
+  (global-set-key (kbd "C-!") 'my/eshell-here)
+
+  (defun eshell/x ()
+    (insert "exit")
+    (eshell-send-input)
+    (delete-window))
+#+END_SRC
+
+** expand-region
+- IntelliJ IDEA like selecting regions by semantic units
+#+BEGIN_SRC emacs-lisp
+  (require 'expand-region)
+  (global-set-key (kbd "C-=") 'er/expand-region)
+#+END_SRC
+
+** flycheck
+- Set up =flycheck= globally (disabled for now)
+#+BEGIN_SRC emacs-lisp
+  ;; (global-flycheck-mode)
+#+END_SRC
+
+** ido
+- Better =C-x C-f= and =C-x b=
+#+BEGIN_SRC emacs-lisp
+  (require 'ido)
+  (ido-mode t)
+#+END_SRC
+
+** iedit
+- Edit occurances of the same text simultaniously
+#+BEGIN_SRC emacs-lisp
+  (require 'iedit)
+#+END_SRC
+
+** imaxima
+- Use emacs as a frontend for Maxima with LaTeX rendered output (see their [[https://sites.google.com/site/imaximaimath/][website]])
+#+BEGIN_SRC emacs-lisp
+  (autoload 'imaxima "imaxima" "Frontend of Maxima CAS" t)
+  (autoload 'imath "imath" "Interactive Math mode" t)
+  (autoload 'imath-mode "imath" "Interactive Math mode" t)
+#+END_SRC
+
+** pdf-tools
+- Replacement for =DocView=
+#+BEGIN_SRC emacs-lisp
+  (pdf-tools-install)
+#+END_SRC
+
+** powerline
+- Emacs fork of VIM's powerline, a better looking, more informative status bar
+#+BEGIN_SRC emacs-lisp
+  (require 'powerline)
+  (powerline-default-theme)
+#+END_SRC
+
+** semantic
+- Enable =semantic= and turn on the idle scheduler (parses buffers while waiting for input)
+#+BEGIN_SRC emacs-lisp
+  (semantic-mode t)
+  (global-semantic-idle-scheduler-mode t)
+#+END_SRC
+
+- Define a function to add =semantic= as a source to =autocomplete= (has to be done since =autocomplete= loads his own config as a hook and would overwrite everything that is done in this file)
+#+BEGIN_SRC emacs-lisp
+(defun my/add-semantic-to-autocomplete() 
+  (add-to-list 'ac-sources 'ac-source-semantic))
+#+END_SRC
+
+** yasnippet
+- Template system for Emacs
+#+BEGIN_SRC emacs-lisp
+  (require 'yasnippet)
+  (yas-reload-all)
+#+END_SRC
+
+** whitespace
+- Set up =whitespace=, a minor-mode for displaying whitespace characters
+#+BEGIN_SRC emacs-lisp
+  (require 'whitespace)
+#+END_SRC
+
+* Load and configure local packages
+- Add the directory with manually downloaded or own modes to the =load-path=
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'load-path "~/.emacs.d/vendor/")
+#+END_SRC
+
+** 6502-mode
+- Syntax highlighting for 6502 assembler ([[http://www.tomseddon.plus.com/beeb/6502-mode.html][6502-mode]])
+#+BEGIN_SRC emacs-lisp
+  (require '6502-mode)
+  (add-to-list 'auto-mode-alist '("\\.s65" . 6502-mode))
+#+END_SRC
+
+** qb-mode
+- Syntax highlighting in QBasic files made by me
+#+BEGIN_SRC emacs-lisp
+  (require 'qb-mode)
+  (add-to-list 'auto-mode-alist '("\\.BAS" . qb-mode))
+#+END_SRC
+
+* Configuration for major modes
+- Major modes that depend on packages loaded above are configured here
+- All manually added hooks go here as well
+
+** C/C++ mode
+- Add system header files to the list of sources for =autocomplete= to parse when =c-mode= or =c++-mode= is loaded
+#+BEGIN_SRC emacs-lisp
+  (defun my/ac-c-header-init ()
+    (require 'auto-complete-c-headers)
+    (add-to-list 'ac-sources 'ac-source-c-headers)
+    (add-to-list 'achead:include-directories '"/usr/lib/gcc/x86_64-pc-linux-gnu/6.2.1/include")
+    (add-to-list 'achead:include-directories '"/usr/lib/gcc/x86_64-pc-linux-gnu/6.2.1/include-fixed")
+    )
+  (add-hook 'c-mode-hook 'my/ac-c-header-init)
+  (add-hook 'c++-mode-hook 'my/ac-c-header-init)
+#+END_SRC
+
+- Load =yasnippet= with =c-mode= and =c++-mode=
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'c-mode-hook 'yas-minor-mode)
+  (add-hook 'c++-mode-hook 'yas-minor-mode)
+#+END_SRC
+
+- Add =semantic= as a source to =autocomplete= in =c-mode= and =c++-mode=
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'c-mode-hook 'my/add-semantic-to-autocomplete)
+  (add-hook 'c++-mode-hook 'my/add-semantic-to-autocomplete)
+#+END_SRC
+
+** Java mode
+- Load [[yasnippet][=yasnippet=]] with =java-mode=
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'java-mode-hook 'yas-minor-mode)
+#+END_SRC
+
+- Add =semantic= as a source to [[autocomplete][=autocomplete=]] in =java-mode=
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'java-mode-hook 'my/add-semantic-to-autocomplete)
+#+END_SRC
+
+** LaTeX / AucTeX
+- Load and set up =auctex= and enable =preview-latex=
+#+BEGIN_SRC emacs-lisp
+  (load "auctex.el" nil t t)
+  (load "preview-latex.el" nil t t)
+#+END_SRC
+
+- Parse LaTeX files on save and load; query for master file
+#+BEGIN_SRC emacs-lisp
+  (setq TeX-auto-save t)
+  (setq TeX-parse-self t)
+  (setq-default TeX-master nil)
+#+END_SRC
+
+- Set up =pdf-tools= to work with SyncTeX
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
+  (setq TeX-source-correlate-start-server t)
+  (setq TeX-view-program-selection '((output-pdf "PDF Tools"))
+        TeX-source-correlate-start-server t)
+#+END_SRC
+
+** Org mode
+*** Agenda settings
+- Save =org-agenda= files in an external file
+#+BEGIN_SRC emacs-lisp
+  (setq org-agenda-files "~/.emacs.d/org-agenda-files")
+#+END_SRC
+*** Code block settings
+- Set up syntax highlighting and native TAB behaviour in =org= code blocks
+#+BEGIN_SRC emacs-lisp
+  (setq org-src-fontify-natively t)
+  (setq org-src-tab-acts-natively t)
+#+END_SRC
+
+- Edit source block in current window
+#+BEGIN_SRC emacs-lisp
+  (setq org-src-window-setup 'current-window)
+#+END_SRC
+
+*** Export settings
+- Enable beamer export
+#+BEGIN_SRC emacs-lisp
+  (require 'ox-beamer)
+#+END_SRC
+
+- Don't show personal information in the footer of exported html files
+#+BEGIN_SRC emacs-lisp
+  (setq org-html-postamble nil)
+#+END_SRC
+
+*** Load my settings for LaTeX export
+- Use xelatex instead of pdflatex
+#+BEGIN_SRC emacs-lisp
+  (setq org-latex-pdf-process 
+    '("xelatex -interaction nonstopmode %f"
+      "xelatex -interaction nonstopmode %f"))
+#+END_SRC
+
+- Use booktabs properly
+#+BEGIN_SRC emacs-lisp
+  (setq org-latex-tables-booktabs t)
+#+END_SRC
+
+- Define a LaTeX class for exporting roleplaying notes
+#+BEGIN_SRC emacs-lisp
+  (require 'ox-latex)
+  (add-to-list 'org-latex-classes
+               '("rpgnotes"
+                 "\\documentclass{scrartcl}
+                  \\usepackage[english]{babel}
+                  \\usepackage[T1]{fontenc}
+                  \\usepackage[utf8]{inputenc}
+                  \\usepackage{hyperref}
+                  \\usepackage{booktabs}
+                  \\usepackage{xltxtra}
+                  \\usepackage{titlesec}
+                  \\setsansfont[Scale=1.5]{BlackBeard}
+                  \\setmainfont{Linux Libertine}
+                  [NO-DEFAULT-PACKAGES]
+                  [PACKAGES]
+                  [EXTRA]"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+#+END_SRC
+
+** Python / Hy mode
+- Set the command for the for the inferior Lisp process to the locally installed Hy REPL
+#+BEGIN_SRC emacs-lisp
+  (setq hy-mode-inferior-lisp-command "~/.local/bin/hy")
+#+END_SRC
