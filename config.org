@@ -168,6 +168,12 @@
   (autoload 'imath-mode "imath" "Interactive Math mode" t)
 #+END_SRC
 
+** magit
+- Bind =magit-satus= to =C-x g=
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-x g") 'magit-status)
+#+END_SRC
+
 ** pdf-tools
 - Replacement for =DocView=
 #+BEGIN_SRC emacs-lisp
