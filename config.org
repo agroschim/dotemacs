@@ -5,10 +5,9 @@
 - Appearance, behaviour and certain global modes are configured here
 
 ** package
-- Add the MELPA and the sunrise commander archive to the list of sources for =package= (which is initialized in [[init.el]])
+- Add the MELPA archive to the list of sources for =package= (which is initialized in [[init.el]])
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
-  (add-to-list 'package-archives '("SC"    . "http://joseito.republika.pl/sunrise-commander/"))
 #+END_SRC
 
 - Since Emacs 25.1 =package= keeps track of the user installed packages in a custom variable
