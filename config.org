@@ -13,8 +13,7 @@
     (interactive)
     (save-excursion
       (let ((beg (line-beginning-position)))
-        (beginning-of-line)
-        (next-line)
+        (forward-line 1)
         (copy-region-as-kill beg (point))
         (yank))))
 #+END_SRC
