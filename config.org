@@ -211,6 +211,12 @@
 
   (defun my/pretty-not-equal()
         (push '("!=" . ?≠) prettify-symbols-alist))
+
+  (defun my/pretty-and()
+        (push '("&&" . ?∧) prettify-symbols-alist))
+
+  (defun my/pretty-or()
+        (push '("||" . ?∨) prettify-symbols-alist))
 #+END_SRC
 
 ** powerline
@@ -308,10 +314,15 @@
 
 - Use unicode symbols for some operators with =prettify-symbols-mode=
 #+BEGIN_SRC emacs-lisp
-(add-hook 'java-mode-hook 'prettify-symbols-mode)
-(add-hook 'java-mode-hook 'my/pretty-less-equal)
-(add-hook 'java-mode-hook 'my/pretty-greater-equal)
-(add-hook 'java-mode-hook 'my/pretty-not-equal)
+  (defun my/pretty-java()
+    (prettify-symbols-mode)
+    (my/pretty-less-equal)
+    (my/pretty-greater-equal)
+    (my/pretty-not-equal)
+    (my/pretty-and)
+    (my/pretty-or))
+
+  (add-hook 'java-mode-hook 'my/pretty-java)
 #+END_SRC
 
 ** LaTeX / AucTeX
