@@ -130,7 +130,7 @@
 #+END_SRC
 
 ** eshell
-- A [[http://www.howardism.org/Technical/Emacs/eshell-fun.html][Howardism]] I stole for quickly using the =eshell= in the current directory
+- A [[http://www.howardism.org/Technical/Emacs/eshell-fun.html][Howardism]] I stole for quickly using the =eshell= in the current directory (slight modification on the =eshell/x= function though)
 #+BEGIN_SRC emacs-lisp
   (defun my/eshell-here ()
     "Opens up a new shell in the directory associated with the
@@ -150,8 +150,7 @@
   (global-set-key (kbd "C-!") 'my/eshell-here)
 
   (defun eshell/x ()
-    (insert "exit")
-    (eshell-send-input)
+    (eshell-life-is-too-much)
     (delete-window))
 #+END_SRC
 
