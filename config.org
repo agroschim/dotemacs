@@ -1,6 +1,24 @@
 #+TITLE: Emacs Config
 #+options: toc:nil date:nil
 
+* Custom functions
+- A set of custom functions defined for convinience (all my functions have the prefix =my/=)
+- Some function are defined later in the context of certain packages
+
+** my/duplicate-line
+- I have grown accustomed to this function thanks to IntelliJ IDEA...
+#+BEGIN_SRC emacs-lisp
+  (defun my/duplicate-line()
+    "Copies the current line and to the kill-ring and yanks it in the following line."
+    (interactive)
+    (save-excursion
+      (let ((beg (line-beginning-position)))
+        (beginning-of-line)
+        (next-line)
+        (copy-region-as-kill beg (point))
+        (yank))))
+#+END_SRC
+
 * Global configuration
 - Appearance, behaviour and certain global modes are configured here
 
@@ -73,9 +91,14 @@
 #+END_SRC
 
 *** Key bindings
-- Bind C-x k to =kill-this-buffer= instead of =kill-buffer= which asks for which buffer to kill
+- Bind =C-x k= to =kill-this-buffer= instead of =kill-buffer= which asks for which buffer to kill
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-x k") 'kill-this-buffer)
+#+END_SRC
+
+- Bind =C-d= to =my/duplicate line=
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-d") 'my/duplicate-line)
 #+END_SRC
 
 * Load and configure individual packages
@@ -245,7 +268,7 @@
   (add-to-list 'auto-mode-alist '("\\.BAS" . qb-mode))
 #+END_SRC
 
-* Configuration for major modes
+* Major mode configuration
 - Major modes that depend on packages loaded above are configured here
 - All manually added hooks go here as well
 
