@@ -103,6 +103,12 @@
 * Load and configure individual packages
 - Individual packages are loaded and configured here.
 
+** all-the-icons
+- Load up and configure =all-the-icons=
+#+BEGIN_SRC emacs-lisp
+  (require 'all-the-icons)
+#+END_SRC
+
 ** autocomplete
 - Set up =autocomplete=
 #+BEGIN_SRC emacs-lisp
@@ -239,6 +245,12 @@
   (add-to-list 'ac-sources 'ac-source-semantic))
 #+END_SRC
 
+** tramp
+- Load =tramp=
+#+BEGIN_SRC emacs-lisp
+  (require 'tramp)
+#+END_SRC
+
 ** yasnippet
 - Template system for Emacs
 #+BEGIN_SRC emacs-lisp
@@ -299,6 +311,13 @@
 #+BEGIN_SRC emacs-lisp
   (add-hook 'c-mode-hook 'my/add-semantic-to-autocomplete)
   (add-hook 'c++-mode-hook 'my/add-semantic-to-autocomplete)
+#+END_SRC
+
+** Dired							      :issue:
+- Issue: requires =tramp= to be loaded?
+- Load =all-the-icons-dired= with =dired=
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 #+END_SRC
 
 ** Java mode
