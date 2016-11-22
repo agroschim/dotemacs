@@ -373,6 +373,11 @@
   (setq org-agenda-files "~/.emacs.d/org-agenda-files")
 #+END_SRC
 
+- Bind =org-agenda= to =f12=
+#+BEGIN_SRC emacs-lisp
+  (define-key global-map (kbd "<f12>") 'org-agenda)
+#+END_SRC
+
 *** Appearance
 - Change the three ellipsis to a more expressive symbol
 #+BEGIN_SRC emacs-lisp
