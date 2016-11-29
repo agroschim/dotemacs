@@ -320,6 +320,11 @@
   (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 #+END_SRC
 
+- Don't truncate long lines in dired mode
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'dired-mode-hook (lambda () (toggle-truncate-lines t)))
+#+END_SRC
+
 ** Java mode
 - Load =yasnippet= with =java-mode=
 #+BEGIN_SRC emacs-lisp
