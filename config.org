@@ -67,6 +67,11 @@
         monokai-height-minus-1 1.0)
 #+END_SRC
 
+- Set the color =monokai-gray= to its value before commit [[https://github.com/oneKelvinSmith/monokai-emacs/commit/65970ea4a15891962784701c75c391c19023a559][65970ea]] of =monokai=
+#+BEGIN_SRC emacs-lisp
+  (setq monokai-gray "#3E3D31")
+#+END_SRC
+
 - Set theme to =monokai= (together with =linum-mode= this gives Emacs a Sublime Text like apparence)
 #+BEGIN_SRC emacs-lisp
   (load-theme 'monokai t)
