@@ -178,6 +178,12 @@
   ;; (global-flycheck-mode)
 #+END_SRC
 
+** golden-ratio
+- Set up =golden-ratio= globally
+#+BEGIN_SRC emacs-lisp
+  (golden-ratio-mode t)
+#+END_SRC
+
 ** ido
 - Enable =ido= for better =C-x C-f= and =C-x b=
 #+BEGIN_SRC emacs-lisp
