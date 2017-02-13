@@ -275,6 +275,12 @@
   (require 'whitespace)
 #+END_SRC
 
+** ztree
+- Bind =ztree-dir= to =C-x z=
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-x z") 'ztree-dir)
+#+END_SRC
+
 * Load and configure local packages
 - Add the directory with manually downloaded or own modes to the =load-path=
 #+BEGIN_SRC emacs-lisp
