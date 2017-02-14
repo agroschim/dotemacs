@@ -18,6 +18,24 @@
         (yank))))
 #+END_SRC
 
+** my/unfill-paragraph
+- Reverse the effect of =fill-paragraph=
+#+BEGIN_SRC emacs-lisp
+  (defun my/unfill-paragraph ()
+    (interactive)
+    (let ((fill-column (point-max)))
+      (fill-paragraph nil)))
+#+END_SRC
+
+** my/kill-all-buffers
+- Kills all buffers
+#+BEGIN_SRC emacs-lisp
+  (defun my/kill-all-buffers ()
+      "Kill all other buffers."
+      (interactive)
+      (mapc 'kill-buffer (buffer-list)))
+#+END_SRC
+
 * Global configuration
 - Appearance, behaviour and certain global modes are configured here
 
@@ -103,6 +121,16 @@
 - Bind =C-d= to =my/duplicate line=
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-d") 'my/duplicate-line)
+#+END_SRC
+
+- Bind =my/unfill-paragraph= to =M-Q=
+#+BEGIN_SRC emacs-lisp
+  (define-key global-map "\M-Q" 'my/unfill-paragraph)
+#+END_SRC
+
+- Bind =my/kill-all-buffers= to =F9=
+#+BEGIN_SRC emacs-lisp
+  (define-key global-map (kbd "<f9>") 'my/kill-all-buffers)
 #+END_SRC
 
 * Load and configure individual packages
