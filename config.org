@@ -18,15 +18,6 @@
         (yank))))
 #+END_SRC
 
-** my/unfill-paragraph
-- Reverse the effect of =fill-paragraph=
-#+BEGIN_SRC emacs-lisp
-  (defun my/unfill-paragraph ()
-    (interactive)
-    (let ((fill-column (point-max)))
-      (fill-paragraph nil)))
-#+END_SRC
-
 ** my/kill-all-buffers
 - Kills all buffers
 #+BEGIN_SRC emacs-lisp
@@ -34,6 +25,15 @@
       "Kill all other buffers."
       (interactive)
       (mapc 'kill-buffer (buffer-list)))
+#+END_SRC
+
+** my/unfill-paragraph
+- Reverse the effect of =fill-paragraph=
+#+BEGIN_SRC emacs-lisp
+  (defun my/unfill-paragraph ()
+    (interactive)
+    (let ((fill-column (point-max)))
+      (fill-paragraph nil)))
 #+END_SRC
 
 * Global configuration
