@@ -96,6 +96,17 @@
 #+END_SRC
 
 ** Behaviour
+*** Directories
+- Add the directory with manually downloaded or own modes to the =load-path=
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'load-path "~/.emacs.d/vendor/")
+#+END_SRC
+
+- Save all backed-up files in one directory
+#+BEGIN_SRC emacs-lisp
+  (setq backup-directory-alist `(("." . "~/.saves")))
+#+END_SRC
+
 *** General behaviour
 - CUA Mode (binds paste, copy and cut to C-v, C-c, C-x; enables rectangular regions)
 #+BEGIN_SRC emacs-lisp
@@ -307,12 +318,6 @@
 - Bind =ztree-dir= to =C-x z=
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-x z") 'ztree-dir)
-#+END_SRC
-
-* Load and configure local packages
-- Add the directory with manually downloaded or own modes to the =load-path=
-#+BEGIN_SRC emacs-lisp
-  (add-to-list 'load-path "~/.emacs.d/vendor/")
 #+END_SRC
 
 ** 6502-mode
