@@ -104,7 +104,7 @@
 
 - Save all backed-up files in one directory
 #+BEGIN_SRC emacs-lisp
-  (setq backup-directory-alist `(("." . "~/.saves")))
+  (setq backup-directory-alist `(("." . "~/.emacs.d/backups")))
 #+END_SRC
 
 *** General behaviour
