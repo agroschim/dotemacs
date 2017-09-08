@@ -247,7 +247,13 @@
 ** magit
 - Bind =magit-satus= to =C-x g=
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-x g") 'magit-status)
+  (global-set-key (kbd "C-x g") 'magit-status)
+#+END_SRC
+
+** nov.el
+- epub reader
+#+BEGIN_SRC emacs-lisp
+  (push '("\\.epub\\'" . nov-mode) auto-mode-alist)
 #+END_SRC
 
 ** pdf-tools
