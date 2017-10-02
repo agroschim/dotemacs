@@ -229,6 +229,16 @@
   (golden-ratio-mode t)
 #+END_SRC
 
+- Toggle =golden-ratio= if in fullscreen
+#+BEGIN_SRC emacs-lisp
+  (defun golden-ratio/fullscreen ()
+    (interactive)
+    (toggle-frame-fullscreen)
+    (golden-ratio-toggle-widescreen))
+
+  (global-set-key (kbd "<f11>") 'golden-ratio/fullscreen)
+#+END_SRC
+
 ** Hy mode
 - Set the command for the for the inferior Lisp process to the locally installed Hy REPL
 #+BEGIN_SRC emacs-lisp
