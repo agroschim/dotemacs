@@ -7,6 +7,10 @@
    (quote
     (elpy-module-company elpy-module-eldoc elpy-module-pyvenv elpy-module-yasnippet elpy-module-sane-defaults)))
  '(inhibit-startup-screen t)
+ '(org-babel-load-languages (quote ((python . t) (emacs-lisp . t))))
+ '(org-modules
+   (quote
+    (org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-rmail org-w3m org-drill)))
  '(package-selected-packages
    (quote
     (elpy chess nov ox-twbs ztree golden-ratio all-the-icons all-the-icons-dired cider magit diff-hl hy-mode auto-complete yasnippet tree-mode rainbow-mode powerline ox-mediawiki monokai-theme json-mode iedit flycheck expand-region dired-subtree csharp-mode auto-complete-c-headers auto-complete-auctex))))
