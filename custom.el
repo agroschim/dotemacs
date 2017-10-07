@@ -13,7 +13,7 @@
     (org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-rmail org-w3m org-drill)))
  '(package-selected-packages
    (quote
-    (elpy chess nov ox-twbs ztree golden-ratio all-the-icons all-the-icons-dired cider magit diff-hl hy-mode auto-complete yasnippet tree-mode rainbow-mode powerline ox-mediawiki monokai-theme json-mode iedit flycheck expand-region dired-subtree csharp-mode auto-complete-c-headers auto-complete-auctex))))
+    (org-plus-contrib org elpy chess nov ox-twbs ztree golden-ratio all-the-icons all-the-icons-dired cider magit diff-hl hy-mode auto-complete yasnippet tree-mode rainbow-mode powerline ox-mediawiki monokai-theme json-mode iedit flycheck expand-region dired-subtree csharp-mode auto-complete-c-headers auto-complete-auctex))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
