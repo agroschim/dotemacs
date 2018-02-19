@@ -179,12 +179,6 @@
   (electric-pair-mode t)
 #+END_SRC
 
-** elpy
-- Enable elpy the Emacs Lisp Python Environment
-#+BEGIN_SRC emacs-lisp
-  (elpy-enable)
-#+END_SRC
-
 ** eshell
 - A [[http://www.howardism.org/Technical/Emacs/eshell-fun.html][Howardism]] I stole for quickly using the =eshell= in the current directory (slight modification on the =eshell/x= function though)
 #+BEGIN_SRC emacs-lisp
