@@ -168,9 +168,9 @@
 #+END_SRC
 
 ** dired
-- Set switches for dired to =-lha= for long format (required by =dired=), human readable file size and all files
+- Set switches for dired to =-lha= for long format (required by =dired=), human readable file size, show all files and list directories first
 #+BEGIN_SRC emacs-lisp
-  (setq-default dired-listing-switches "-lha")
+  (setq-default dired-listing-switches "-lha --group-directories-first")
 #+END_SRC
 
 ** electric-pair-mode
@@ -484,20 +484,19 @@
   (setq org-html-postamble nil)
 #+END_SRC
 
-*** Load my settings for LaTeX export
 - Use pdflatex (default)
 #+BEGIN_SRC emacs-lisp
-;;  (setq org-latex-pdf-process 
-;;    '("pdflatex -interaction nonstopmode -output-directory %o %f"
-;;      "pdflatex -interaction nonstopmode -output-directory %o %f"
-;;      "pdflatex -interaction nonstopmode -output-directory %o %f"))
+  (setq org-latex-pdf-process 
+    '("pdflatex -interaction nonstopmode -output-directory %o %f"
+      "pdflatex -interaction nonstopmode -output-directory %o %f"
+      "pdflatex -interaction nonstopmode -output-directory %o %f"))
 #+END_SRC
 
 - Use xelatex instead of pdflatex
 #+BEGIN_SRC emacs-lisp
-  (setq org-latex-pdf-process 
-    '("xelatex -interaction nonstopmode %f"
-      "xelatex -interaction nonstopmode %f"))
+;;  (setq org-latex-pdf-process 
+;;    '("xelatex -interaction nonstopmode %f"
+;;      "xelatex -interaction nonstopmode %f"))
 #+END_SRC
 
 - Use booktabs properly
@@ -505,6 +504,7 @@
   (setq org-latex-tables-booktabs t)
 #+END_SRC
 
+**** Define new classes for LaTeX export
 - Define a LaTeX class for exporting roleplaying notes (requires xelatex)
 #+BEGIN_SRC emacs-lisp
   (require 'ox-latex)
