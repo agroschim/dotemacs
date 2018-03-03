@@ -484,6 +484,11 @@
   (setq org-html-postamble nil)
 #+END_SRC
 
+- Don't export LaTeX with hyperref
+#+BEGIN_SRC emacs-lisp
+  (setq org-latex-with-hyperref nil)
+#+END_SRC
+
 - Use pdflatex (default)
 #+BEGIN_SRC emacs-lisp
   (setq org-latex-pdf-process 
@@ -504,8 +509,33 @@
   (setq org-latex-tables-booktabs t)
 #+END_SRC
 
-**** Define new classes for LaTeX export
-- Define a LaTeX class for exporting roleplaying notes (requires xelatex)
+*** Define new classes for LaTeX export
+- Define a LaTeX class for exporting homework assignments
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'org-latex-classes
+               '("hagen"
+                 "\\documentclass[12pt, a4paper, DIV=15, numbers=noendperiod, parskip=half]{scrartcl}
+                  \\usepackage[utf8]{inputenc}
+                  \\usepackage[ngerman]{babel}
+                  \\usepackage{booktabs}
+                  \\usepackage{libertine}
+                  \\usepackage[scaled=0.92]{helvet}
+                  \\linespread{1.25}
+                  \\setcounter{secnumdepth}{4}
+                  [NO-DEFAULT-PACKAGES]
+                  [PACKAGES]
+                  [EXTRA]
+                  \\renewcommand\\thesection{\\Roman{section}.}
+                  \\renewcommand\\thesubsection{\\arabic{subsection}.}
+                  \\renewcommand\\thesubsubsection{\\alph{subsubsection})}
+                  \\renewcommand\\theparagraph{\\alph{paragraph}\\alph{paragraph})}"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")))
+#+END_SRC
+
+- Define a XeTeX class for exporting roleplaying notes (requires xelatex)
 #+BEGIN_SRC emacs-lisp
   (require 'ox-latex)
   (add-to-list 'org-latex-classes
