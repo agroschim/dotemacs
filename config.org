@@ -167,12 +167,6 @@
   (setq-default ispell-program-name "aspell")
 #+END_SRC
 
-** dired
-- Set switches for dired to =-lha= for long format (required by =dired=), human readable file size, show all files and list directories first
-#+BEGIN_SRC emacs-lisp
-  (setq-default dired-listing-switches "-lha --group-directories-first")
-#+END_SRC
-
 ** electric-pair-mode
 - Automatically inserts parenthesis in pairs
 #+BEGIN_SRC emacs-lisp
@@ -387,9 +381,18 @@
 
 ** Dired							      :issue:
 - Issue: requires =tramp= to be loaded?
-- Load =all-the-icons-dired= with =dired=
+- Load =all-the-icons-dired= with =dired= and disable =font-lock-mode=
 #+BEGIN_SRC emacs-lisp
-  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+  (defun my/dired-setup ()
+    "Load all-the-icons and disable font-lock-mode"
+    (all-the-icons-dired-mode)
+    (font-lock-mode 0))
+  (add-hook 'dired-mode-hook 'my/dired-setup)
+#+END_SRC
+
+- Set switches for dired to =-lha= for long format (required by =dired=), human readable file size, show all files and list directories first
+#+BEGIN_SRC emacs-lisp
+  (setq-default dired-listing-switches "-lha --group-directories-first")
 #+END_SRC
 
 - Don't truncate long lines in dired mode
