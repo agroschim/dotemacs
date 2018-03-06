@@ -494,17 +494,17 @@
 
 - Use pdflatex (default)
 #+BEGIN_SRC emacs-lisp
-  (setq org-latex-pdf-process 
-    '("pdflatex -interaction nonstopmode -output-directory %o %f"
-      "pdflatex -interaction nonstopmode -output-directory %o %f"
-      "pdflatex -interaction nonstopmode -output-directory %o %f"))
+;;  (setq org-latex-pdf-process 
+;;    '("pdflatex -interaction nonstopmode -output-directory %o %f"
+;;      "pdflatex -interaction nonstopmode -output-directory %o %f"
+;;      "pdflatex -interaction nonstopmode -output-directory %o %f"))
 #+END_SRC
 
 - Use xelatex instead of pdflatex
 #+BEGIN_SRC emacs-lisp
-;;  (setq org-latex-pdf-process 
-;;    '("xelatex -interaction nonstopmode %f"
-;;      "xelatex -interaction nonstopmode %f"))
+  (setq org-latex-pdf-process 
+    '("xelatex -interaction nonstopmode %f"
+      "xelatex -interaction nonstopmode %f"))
 #+END_SRC
 
 - Use booktabs properly
@@ -513,6 +513,7 @@
 #+END_SRC
 
 *** Define new classes for LaTeX export
+**** LaTeX
 - Define a LaTeX class for exporting homework assignments
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'org-latex-classes
@@ -538,12 +539,13 @@
                  ("\\paragraph{%s}" . "\\paragraph*{%s}")))
 #+END_SRC
 
-- Define a XeTeX class for exporting roleplaying notes (requires xelatex)
+**** XeTeX
+- Define a XeTeX class for exporting roleplaying notes in a fantasy flavour
 #+BEGIN_SRC emacs-lisp
   (require 'ox-latex)
   (add-to-list 'org-latex-classes
                '("rpgnotes"
-                 "\\documentclass[twocolumn=true]{scrartcl}
+                 "\\documentclass[DIV=15, twocolumn=true]{scrartcl}
                   \\usepackage[english]{babel}
                   \\usepackage[T1]{fontenc}
                   \\usepackage[utf8]{inputenc}
@@ -553,6 +555,32 @@
                   \\usepackage{titlesec}
                   \\setsansfont[Scale=1.5]{BlackBeard}
                   \\setmainfont{Linux Libertine}
+                  [NO-DEFAULT-PACKAGES]
+                  [PACKAGES]
+                  [EXTRA]"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+#+END_SRC
+
+- Define a XeTeX class for exporting roleplaying notes in Eclipse Phase flavour
+#+BEGIN_SRC emacs-lisp
+  (require 'ox-latex)
+  (add-to-list 'org-latex-classes
+               '("epnotes"
+                 "\\documentclass[DIV=15, twocolumn=true]{scrartcl}
+                  \\usepackage[english]{babel}
+                  \\usepackage[T1]{fontenc}
+                  \\usepackage[utf8]{inputenc}
+                  \\usepackage{hyperref}
+                  \\usepackage{booktabs}
+                  \\usepackage{xltxtra}
+                  \\usepackage{titlesec}
+                  \\setsansfont[Scale=1.5]{Heliotype LET}
+                  \\setmainfont{Linux Libertine}
+                  \\setcounter{secnumdepth}{0}
                   [NO-DEFAULT-PACKAGES]
                   [PACKAGES]
                   [EXTRA]"
