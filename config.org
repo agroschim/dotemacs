@@ -494,17 +494,17 @@
 
 - Use pdflatex (default)
 #+BEGIN_SRC emacs-lisp
-  (setq org-latex-pdf-process 
-    '("pdflatex -interaction nonstopmode -output-directory %o %f"
-      "pdflatex -interaction nonstopmode -output-directory %o %f"
-      "pdflatex -interaction nonstopmode -output-directory %o %f"))
+;;  (setq org-latex-pdf-process 
+;;    '("pdflatex -interaction nonstopmode -output-directory %o %f"
+;;      "pdflatex -interaction nonstopmode -output-directory %o %f"
+;;      "pdflatex -interaction nonstopmode -output-directory %o %f"))
 #+END_SRC
 
 - Use xelatex instead of pdflatex
 #+BEGIN_SRC emacs-lisp
-;;  (setq org-latex-pdf-process 
-;;    '("xelatex -interaction nonstopmode %f"
-;;      "xelatex -interaction nonstopmode %f"))
+  (setq org-latex-pdf-process 
+    '("xelatex -interaction nonstopmode %f"
+      "xelatex -interaction nonstopmode %f"))
 #+END_SRC
 
 - Use booktabs properly
@@ -580,6 +580,11 @@
                   \\usepackage{titlesec}
                   \\setsansfont[Scale=1.5]{BlackBeard}
                   \\setmainfont{Linux Libertine}
+                  \\setcounter{secnumdepth}{4}
+                  \\renewcommand\\thesection{\\Roman{section}}
+                  \\renewcommand\\thesubsection{\\arabic{subsection}.}
+                  \\renewcommand\\thesubsubsection{\\arabic{subsection}.\\arabic{subsubsection}}
+                  \\renewcommand\\theparagraph{\\alph{paragraph})}
                   [NO-DEFAULT-PACKAGES]
                   [PACKAGES]
                   [EXTRA]"
