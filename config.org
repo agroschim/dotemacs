@@ -504,17 +504,17 @@
 
 - Use pdflatex (default)
 #+BEGIN_SRC emacs-lisp
-  (setq org-latex-pdf-process 
-    '("pdflatex -interaction nonstopmode -output-directory %o %f"
-      "pdflatex -interaction nonstopmode -output-directory %o %f"
-      "pdflatex -interaction nonstopmode -output-directory %o %f"))
+;;  (setq org-latex-pdf-process 
+;;    '("pdflatex -interaction nonstopmode -output-directory %o %f"
+;;      "pdflatex -interaction nonstopmode -output-directory %o %f"
+;;      "pdflatex -interaction nonstopmode -output-directory %o %f"))
 #+END_SRC
 
 - Use xelatex instead of pdflatex
 #+BEGIN_SRC emacs-lisp
-;;  (setq org-latex-pdf-process 
-;;    '("xelatex -interaction nonstopmode %f"
-;;      "xelatex -interaction nonstopmode %f"))
+  (setq org-latex-pdf-process 
+    '("xelatex -interaction nonstopmode %f"
+      "xelatex -interaction nonstopmode %f"))
 #+END_SRC
 
 *** Define new classes for LaTeX export
