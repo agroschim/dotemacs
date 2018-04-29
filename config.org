@@ -124,29 +124,30 @@
 #+END_SRC
 
 *** Key bindings
-- Bind =C-x k= to =kill-this-buffer= instead of =kill-buffer= which asks for which buffer to kill
+- Bind =C-x k= to =kill-this-buffer= instead of =kill-buffer= which
+  asks for which buffer to kill
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-x k") 'kill-this-buffer)
 #+END_SRC
 
-- Bind =M-/= to =hippe-expand=
+- Bind =hippe-expand= to =M-/=
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "M-/") 'hippie-expand)
 #+END_SRC
 
-- Bind =C-d= to =my/duplicate line=
+- Bind =my/duplicate line= to =C-d=
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-d") 'my/duplicate-line)
 #+END_SRC
 
 - Bind =my/unfill-paragraph= to =M-Q=
 #+BEGIN_SRC emacs-lisp
-  (define-key global-map "\M-Q" 'my/unfill-paragraph)
+  (global-set-key (kbd "\M-Q") 'my/unfill-paragraph)
 #+END_SRC
 
 - Bind =my/kill-all-buffers= to =F9=
 #+BEGIN_SRC emacs-lisp
-  (define-key global-map (kbd "<f9>") 'my/kill-all-buffers)
+  (global-set-key (kbd "<f9>") 'my/kill-all-buffers)
 #+END_SRC
 
 * Load and configure individual packages
