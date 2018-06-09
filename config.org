@@ -272,9 +272,9 @@
 #+END_SRC
 
 ** pdf-tools
-- Replacement for =DocView= (currently disfunctional)
+- Replacement for =DocView=
 #+BEGIN_SRC emacs-lisp
-  ;; (pdf-tools-install)
+  (pdf-tools-install)
 #+END_SRC
 
 ** prettify-symbols-mode
