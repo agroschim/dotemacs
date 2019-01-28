@@ -178,6 +178,15 @@
   (setq-default ispell-program-name "aspell")
 #+END_SRC
 
+** csound-mode
+- Add hooks for =csound-mode=
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'auto-mode-alist '("\\.csd\\'" . csound-mode))
+  (add-to-list 'auto-mode-alist '("\\.orc\\'" . csound-mode))
+  (add-to-list 'auto-mode-alist '("\\.sco\\'" . csound-mode))
+  (add-to-list 'auto-mode-alist '("\\.udo\\'" . csound-mode))
+#+END_SRC
+
 ** electric-pair-mode
 - Automatically inserts parenthesis in pairs
 #+BEGIN_SRC emacs-lisp
