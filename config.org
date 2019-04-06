@@ -468,7 +468,7 @@
 
 - Parse LaTeX files on save and load; query for master file
 #+BEGIN_SRC emacs-lisp
-  (setq TeX-auto-save t)
+  (setq TeX-auto-save nil)
   (setq TeX-parse-self t)
   (setq-default TeX-master nil)
 #+END_SRC
