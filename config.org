@@ -575,7 +575,6 @@
                   \\usepackage{hyperref}
                   \\usepackage{booktabs}
                   \\usepackage{xltxtra}
-                  \\usepackage{titlesec}
                   [NO-DEFAULT-PACKAGES]
                   [PACKAGES]
                   [EXTRA]"
