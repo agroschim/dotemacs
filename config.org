@@ -457,15 +457,15 @@
 ** LaTeX / AucTeX
 - Load and set up =auctex= and enable =preview-latex=
 #+BEGIN_SRC emacs-lisp
-  (load "auctex.el" nil t t)
-  (load "preview-latex.el" nil t t)
+;;  (load "auctex.el" nil t t)
+;;  (load "preview-latex.el" nil t t)
 #+END_SRC
 
 - Parse LaTeX files on save and load; query for master file
 #+BEGIN_SRC emacs-lisp
-  (setq TeX-auto-save nil)
-  (setq TeX-parse-self t)
-  (setq-default TeX-master nil)
+;;  (setq TeX-auto-save nil)
+;;  (setq TeX-parse-self t)
+;;  (setq-default TeX-master nil)
 #+END_SRC
 
 - Set up =pdf-tools= to work with SyncTeX
