@@ -5,6 +5,10 @@
  ;; If there is more than one, they won't work right.
  '(default-input-method "cyrillic-translit")
  '(inhibit-startup-screen t)
+ '(initial-major-mode (quote org-mode))
+ '(initial-scratch-message "
+
+")
  '(org-babel-load-languages (quote ((python . t) (emacs-lisp . t))))
  '(org-modules
    (quote
