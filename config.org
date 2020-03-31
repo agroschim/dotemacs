@@ -103,6 +103,37 @@
   (load-theme 'monokai t)
 #+END_SRC
 
+*** Windows
+- Window ruleset stolen from [[https://protesilaos.com/dotemacs][Prot]]
+
+#+BEGIN_SRC emacs-lisp
+  (setq display-buffer-alist
+        '(
+          ("\\*\\(Flycheck\\).*"
+           (display-buffer-in-side-window)
+           (window-height . 0.16)
+           (side . top)
+           (slot . 0)
+           (window-parameters . ((no-other-window . t))))
+          ("\\*\\(Backtrace\\|Warnings\\|Compile-Log\\|Messages\\)\\*"
+           (display-buffer-in-side-window)
+           (window-height . 0.16)
+           (side . bottom)
+           (slot . -1)
+           (window-parameters . ((no-other-window . t))))
+          (".*\\*Completions.*"
+           (display-buffer-in-side-window)
+           (window-height . 0.16)
+           (side . bottom)
+           (slot . 0)
+           (window-parameters . ((no-other-window . t))))
+          ("\\*e?shell.*"
+           (display-buffer-in-side-window)
+           (window-height . 0.16)
+           (side . bottom)
+           (slot . 1))))
+#+END_SRC
+
 ** Behaviour
 *** Directories
 - Add the directory with manually downloaded or own modes to the =load-path=
@@ -232,22 +263,6 @@
 - Set up =flycheck= globally (disabled for now)
 #+BEGIN_SRC emacs-lisp
   ;; (global-flycheck-mode)
-#+END_SRC
-
-** golden-ratio
-- Set up =golden-ratio= globally
-#+BEGIN_SRC emacs-lisp
-  (golden-ratio-mode t)
-#+END_SRC
-
-- Toggle =golden-ratio= if in fullscreen
-#+BEGIN_SRC emacs-lisp
-  (defun golden-ratio/fullscreen ()
-    (interactive)
-    (toggle-frame-fullscreen)
-    (golden-ratio-toggle-widescreen))
-
-  (global-set-key (kbd "<f11>") 'golden-ratio/fullscreen)
 #+END_SRC
 
 ** Hy mode
