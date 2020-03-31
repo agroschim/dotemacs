@@ -108,30 +108,18 @@
 
 #+BEGIN_SRC emacs-lisp
   (setq display-buffer-alist
-        '(
-          ("\\*\\(Flycheck\\).*"
-           (display-buffer-in-side-window)
-           (window-height . 0.16)
-           (side . top)
-           (slot . 0)
-           (window-parameters . ((no-other-window . t))))
-          ("\\*\\(Backtrace\\|Warnings\\|Compile-Log\\|Messages\\)\\*"
-           (display-buffer-in-side-window)
-           (window-height . 0.16)
-           (side . bottom)
-           (slot . -1)
-           (window-parameters . ((no-other-window . t))))
-          (".*\\*Completions.*"
-           (display-buffer-in-side-window)
-           (window-height . 0.16)
-           (side . bottom)
-           (slot . 0)
-           (window-parameters . ((no-other-window . t))))
-          ("\\*e?shell.*"
-           (display-buffer-in-side-window)
-           (window-height . 0.16)
-           (side . bottom)
-           (slot . 1))))
+	'(
+	  ("\\*Completions\\*"
+	   (display-buffer-in-side-window)
+	   (window-height . 0.25)
+	   (side . bottom)
+	   (slot . 1)
+	   (window-parameters . ((no-other-window . t))))
+	  ("\\*\\(e?shell\\|Python\\)\\*"
+	   (display-buffer-in-side-window)
+	   (window-height . 0.25)
+	   (side . bottom)
+	   (slot . 0))))
 #+END_SRC
 
 ** Behaviour
