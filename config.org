@@ -172,6 +172,11 @@
   (global-set-key (kbd "\M-Q") 'my/unfill-paragraph)
 #+END_SRC
 
+- Bind =pomidor= to =F5=
+#+BEGIN_SRC emacs-lisp
+  (define-key global-map (kbd "<f5>") 'pomidor)
+#+END_SRC
+
 - Bind =my/kill-all-buffers= to =F9=
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "<f9>") 'my/kill-all-buffers)
