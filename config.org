@@ -496,6 +496,24 @@
   (define-key global-map (kbd "<f12>") 'org-agenda)
 #+END_SRC
 
+- Add new task states for tasks that need to be reviewed (=NEEDSREVIEW=) and tasks
+  that currently are in review (=INREVIEW=); add a state for cancelled tasks
+#+BEGIN_SRC emacs-lisp
+  (setq org-todo-keywords
+        '((sequence "TODO"
+                    "WAITING"
+                    "NEEDSREVIEW"
+                    "INREVIEW"
+                    "|" "DONE" "CANCELLED")))
+  (setq org-todo-keyword-faces
+        '(("TODO" :foreground "#F92672" :weight bold)
+          ("WAITING" :foreground "#F92672" :weight bold)
+          ("NEEDSREVIEW" :foreground "#F92672" :weight bold)
+          ("INREVIEW" :foreground "#66D9EF" :weight bold)
+          ("DONE" :foreground "#A6E22E" :weight bold)
+          ("CANCELLED" :foreground "#A6E22E" :weight bold)))
+#+END_SRC
+
 *** Appearance
 - Change the three ellipsis to a more expressive symbol
 #+BEGIN_SRC emacs-lisp
