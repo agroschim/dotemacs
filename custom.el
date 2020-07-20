@@ -8,6 +8,7 @@
  '(initial-major-mode (quote org-mode))
  '(initial-scratch-message "")
  '(org-babel-load-languages (quote ((python . t) (emacs-lisp . t))))
+ '(org-deadline-warning-days 30)
  '(org-modules
    (quote
     (org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-rmail org-w3m)))
