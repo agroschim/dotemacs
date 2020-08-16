@@ -292,9 +292,15 @@
 #+END_SRC
 
 ** pdf-tools
+
 - Replacement for =DocView=
 #+BEGIN_SRC emacs-lisp
   (pdf-tools-install)
+#+END_SRC
+
+- Disable =linum-mode= in =pdf-view-mode= otherwise Emacs freezes
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'pdf-view-mode-hook (lambda() (linum-mode -1)))
 #+END_SRC
 
 ** prettify-symbols-mode
@@ -428,9 +434,9 @@
 - Bind =dired-find-alternate-file= to =a= and =dired-find-file= to
   =Enter= (switch the keys for the respective funtions)
 #+BEGIN_SRC emacs-lisp
-  (add-hook 'dired-mode-hook (lambda () 
-                               (local-set-key (kbd "RET") 'dired-find-alternate-file)
-                               (local-set-key (kbd "a") 'dired-find-file)))
+;;  (add-hook 'dired-mode-hook (lambda () 
+;;                               (local-set-key (kbd "RET") 'dired-find-alternate-file)
+;;                               (local-set-key (kbd "a") 'dired-find-file)))
 #+END_SRC
 
 - Don't truncate long lines in dired mode
