@@ -12,7 +12,12 @@
  '(org-modules
    '(org-tempo org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-rmail org-w3m))
  '(package-selected-packages
-   '(alert pomidor htmlize graphviz-dot-mode web-beautify csound-mode pdf-tools ereader ox-twbs ztree all-the-icons all-the-icons-dired magit diff-hl hy-mode auto-complete yasnippet tree-mode rainbow-mode powerline ox-mediawiki monokai-theme json-mode iedit flycheck expand-region dired-subtree csharp-mode auto-complete-c-headers auto-complete-auctex)))
+   '(alert pomidor htmlize graphviz-dot-mode web-beautify csound-mode pdf-tools ereader ox-twbs ztree all-the-icons all-the-icons-dired magit diff-hl hy-mode auto-complete yasnippet tree-mode rainbow-mode powerline ox-mediawiki monokai-theme json-mode iedit flycheck expand-region dired-subtree csharp-mode auto-complete-c-headers auto-complete-auctex))
+ '(pomidor-alert nil)
+ '(pomidor-sound-break-over "")
+ '(pomidor-sound-overwork "")
+ '(pomidor-sound-tack "")
+ '(pomidor-sound-tick ""))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
