@@ -73,17 +73,12 @@
 
 - Enable line numbers globally
 #+BEGIN_SRC emacs-lisp
-  (global-linum-mode)
+  (global-display-line-numbers-mode)
 #+END_SRC
 
 - Don't show startup screen (obsolete: now set in [[file:custom.el][custom.el]] as =(inhibit-startup-screen t)=)
 
 *** Theming
-- Diasable variable pitched fonts (non-monospaced fonts) in the theme before loading ([[https://github.com/oneKelvinSmith/monokai-emacs/issues/56][see here]])
-#+BEGIN_SRC emacs-lisp
-  (setq monokai-use-variable-pitch nil)
-#+END_SRC
-
 - Use same height for all faces
 #+BEGIN_SRC emacs-lisp
   (setq monokai-height-plus-1 1.0
@@ -98,7 +93,7 @@
   (setq monokai-gray "#3E3D31")
 #+END_SRC
 
-- Set theme to =monokai= (together with =linum-mode= this gives Emacs a Sublime Text like apparence)
+- Set theme to =monokai= (this gives Emacs a Sublime Text like apparence)
 #+BEGIN_SRC emacs-lisp
   (load-theme 'monokai t)
 #+END_SRC
