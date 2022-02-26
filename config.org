@@ -533,6 +533,17 @@
   (setq org-src-window-setup 'current-window)
 #+END_SRC
 
+*** Hooks
+- Add =auto-fill-mode= to the =org-mode= hooks
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'org-mode-hook (lambda () (auto-fill-mode t)))
+#+END_SRC
+
+- Disable =electric-indent-mode= in =org-mode= buffers
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'org-mode-hook (lambda () (electric-indent-local-mode -1)))
+#+END_SRC
+
 *** Export settings
 - Enable beamer export
 #+BEGIN_SRC emacs-lisp
