@@ -1,4 +1,5 @@
 #+TITLE: Emacs Config
+#+STARTUP: overview
 #+options: toc:nil date:nil
 
 * Custom functions
@@ -290,12 +291,7 @@
 
 - Replacement for =DocView=
 #+BEGIN_SRC emacs-lisp
-  (pdf-tools-install)
-#+END_SRC
-
-- Disable =linum-mode= in =pdf-view-mode= otherwise Emacs freezes
-#+BEGIN_SRC emacs-lisp
-  (add-hook 'pdf-view-mode-hook (lambda() (linum-mode -1)))
+  ;; (pdf-tools-install)
 #+END_SRC
 
 ** prettify-symbols-mode
