@@ -201,15 +201,6 @@
   (setq-default ispell-program-name "aspell")
 #+END_SRC
 
-** csound-mode
-- Add hooks for =csound-mode=
-#+BEGIN_SRC emacs-lisp
-  (add-to-list 'auto-mode-alist '("\\.csd\\'" . csound-mode))
-  (add-to-list 'auto-mode-alist '("\\.orc\\'" . csound-mode))
-  (add-to-list 'auto-mode-alist '("\\.sco\\'" . csound-mode))
-  (add-to-list 'auto-mode-alist '("\\.udo\\'" . csound-mode))
-#+END_SRC
-
 ** electric-pair-mode
 - Automatically inserts parenthesis in pairs
 #+BEGIN_SRC emacs-lisp
@@ -254,12 +245,6 @@
   ;; (global-flycheck-mode)
 #+END_SRC
 
-** Hy mode
-- Set the command for the for the inferior Lisp process to the locally installed Hy REPL
-#+BEGIN_SRC emacs-lisp
-  (setq hy-mode-inferior-lisp-command "~/.local/bin/hy")
-#+END_SRC
-
 ** ido
 - Enable =ido= for better =C-x C-f= and =C-x b=
 #+BEGIN_SRC emacs-lisp
@@ -285,6 +270,13 @@
 - Bind =magit-satus= to =C-x g=
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-x g") 'magit-status)
+#+END_SRC
+
+** nasm-mode
+- Syntax highlighting for NASM assembler
+#+BEGIN_SRC emacs-lisp
+  (require 'nasm-mode)
+  (add-to-list 'auto-mode-alist '("\\.asm" . nasm-mode))
 #+END_SRC
 
 ** pdf-tools
