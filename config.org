@@ -272,6 +272,12 @@
   (global-set-key (kbd "C-x g") 'magit-status)
 #+END_SRC
 
+** move-text
+- Move the current line using M-up / M-down
+#+BEGIN_SRC emacs-lisp
+  (move-text-default-bindings)
+#+END_SRC
+
 ** nasm-mode
 - Syntax highlighting for NASM assembler
 #+BEGIN_SRC emacs-lisp
