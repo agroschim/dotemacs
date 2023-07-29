@@ -278,6 +278,16 @@
   (move-text-default-bindings)
 #+END_SRC
 
+** multiple-cursors
+- Multiple cursors for Emacs
+#+begin_src emacs-lisp
+  (require 'multiple-cursors)
+  (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C-c C-<") 'mc/-all-like-this)
+#+end_src
+
 ** nasm-mode
 - Syntax highlighting for NASM assembler
 #+BEGIN_SRC emacs-lisp
