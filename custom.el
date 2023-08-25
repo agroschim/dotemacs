@@ -18,7 +18,8 @@
  '(pomidor-sound-break-over "")
  '(pomidor-sound-overwork "")
  '(pomidor-sound-tack "")
- '(pomidor-sound-tick ""))
+ '(pomidor-sound-tick "")
+ '(python-shell-interpreter-args "-B -i"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
