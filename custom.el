@@ -13,7 +13,7 @@
  '(org-export-backends '(ascii html latex md odt))
  '(org-modules '(ol-bibtex ol-doi org-tempo))
  '(package-selected-packages
-   '(multiple-cursors move-text nasm-mode all-the-icons-dired pomidor htmlize graphviz-dot-mode web-beautify pdf-tools ereader ox-twbs ztree magit diff-hl auto-complete yasnippet tree-mode rainbow-mode powerline ox-mediawiki monokai-theme json-mode iedit flycheck expand-region dired-subtree csharp-mode auto-complete-c-headers auto-complete-auctex))
+   '(multiple-cursors move-text nasm-mode pomidor htmlize graphviz-dot-mode web-beautify ereader ox-twbs magit diff-hl yasnippet tree-mode rainbow-mode powerline ox-mediawiki monokai-theme json-mode iedit flycheck expand-region dired-subtree csharp-mode))
  '(pomidor-alert nil)
  '(pomidor-sound-break-over "")
  '(pomidor-sound-overwork "")

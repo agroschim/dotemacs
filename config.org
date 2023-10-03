@@ -181,20 +181,6 @@
 * Load and configure individual packages
 - Individual packages are loaded and configured here.
 
-** all-the-icons
-- Load up and configure =all-the-icons=
-#+BEGIN_SRC emacs-lisp
-  (use-package all-the-icons)
-#+END_SRC
-
-** autocomplete
-- Set up =autocomplete=
-#+BEGIN_SRC emacs-lisp
-  (use-package auto-complete)
-  (use-package auto-complete-config)
-  (ac-config-default)
-#+END_SRC
-
 ** aspell
 - Set default spellchecking to =aspell=
 #+BEGIN_SRC emacs-lisp
@@ -239,12 +225,6 @@
   (global-set-key (kbd "C-=") 'er/expand-region)
 #+END_SRC
 
-** flycheck
-- Set up =flycheck= globally (disabled for now)
-#+BEGIN_SRC emacs-lisp
-  ;; (global-flycheck-mode)
-#+END_SRC
-
 ** ido
 - Enable =ido= for better =C-x C-f= and =C-x b=
 #+BEGIN_SRC emacs-lisp
@@ -256,14 +236,6 @@
 - Edit occurances of the same text simultaniously
 #+BEGIN_SRC emacs-lisp
   (use-package iedit)
-#+END_SRC
-
-** imaxima
-- Use emacs as a frontend for Maxima with LaTeX rendered output (see their [[https://sites.google.com/site/imaximaimath/][website]])
-#+BEGIN_SRC emacs-lisp
-  (autoload 'imaxima "imaxima" "Frontend of Maxima CAS" t)
-  (autoload 'imath "imath" "Interactive Math mode" t)
-  (autoload 'imath-mode "imath" "Interactive Math mode" t)
 #+END_SRC
 
 ** magit
@@ -295,50 +267,11 @@
   (add-to-list 'auto-mode-alist '("\\.asm" . nasm-mode))
 #+END_SRC
 
-** pdf-tools
-
-- Replacement for =DocView=
-#+BEGIN_SRC emacs-lisp
-  ;; (pdf-tools-install)
-#+END_SRC
-
-** prettify-symbols-mode
-- Define auxilliary functions for adding various unicode symbols to certain language modes
-#+BEGIN_SRC emacs-lisp
-  (defun my/pretty-less-equal()
-        (push '("<=" . ?≤) prettify-symbols-alist))
-
-  (defun my/pretty-greater-equal()
-        (push '(">=" . ?≥) prettify-symbols-alist))
-
-  (defun my/pretty-not-equal()
-        (push '("!=" . ?≠) prettify-symbols-alist))
-
-  (defun my/pretty-and()
-        (push '("&&" . ?∧) prettify-symbols-alist))
-
-  (defun my/pretty-or()
-        (push '("||" . ?∨) prettify-symbols-alist))
-#+END_SRC
-
 ** powerline
 - Emacs fork of VIM's powerline, a better looking, more informative status bar
 #+BEGIN_SRC emacs-lisp
   (use-package powerline)
   (powerline-default-theme)
-#+END_SRC
-
-** semantic
-- Enable =semantic= and turn on the idle scheduler (parses buffers while waiting for input)
-#+BEGIN_SRC emacs-lisp
-  (semantic-mode t)
-  (global-semantic-idle-scheduler-mode t)
-#+END_SRC
-
-- Define a function to add =semantic= as a source to =autocomplete= (has to be done since =autocomplete= loads his own config as a hook and would overwrite everything that is done in this file)
-#+BEGIN_SRC emacs-lisp
-(defun my/add-semantic-to-autocomplete() 
-  (add-to-list 'ac-sources 'ac-source-semantic))
 #+END_SRC
 
 ** tramp
@@ -347,23 +280,10 @@
   (use-package tramp)
 #+END_SRC
 
-** yasnippet
-- Template system for Emacs
-#+BEGIN_SRC emacs-lisp
-  (use-package yasnippet)
-  (yas-reload-all)
-#+END_SRC
-
 ** whitespace
 - Set up =whitespace=, a minor-mode for displaying whitespace characters
 #+BEGIN_SRC emacs-lisp
   (use-package whitespace)
-#+END_SRC
-
-** ztree
-- Bind =ztree-dir= to =C-x z=
-#+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-x z") 'ztree-dir)
 #+END_SRC
 
 ** 6502-mode
@@ -384,41 +304,8 @@
 - Major modes that depend on packages loaded above are configured here
 - All manually added hooks go here as well
 
-** C/C++ mode
-- Add system header files to the list of sources for =autocomplete= to parse when =c-mode= or =c++-mode= is loaded
-#+BEGIN_SRC emacs-lisp
-  (defun my/ac-c-header-init ()
-    (use-package auto-complete-c-headers)
-    (add-to-list 'ac-sources 'ac-source-c-headers)
-    (add-to-list 'achead:include-directories '"/usr/lib/gcc/x86_64-pc-linux-gnu/13.1.1/include")
-    (add-to-list 'achead:include-directories '"/usr/lib/gcc/x86_64-pc-linux-gnu/13.1.1/include-fixed")
-    )
-  (add-hook 'c-mode-hook 'my/ac-c-header-init)
-  (add-hook 'c++-mode-hook 'my/ac-c-header-init)
-#+END_SRC
-
-- Load =yasnippet= with =c-mode= and =c++-mode=
-#+BEGIN_SRC emacs-lisp
-  (add-hook 'c-mode-hook 'yas-minor-mode)
-  (add-hook 'c++-mode-hook 'yas-minor-mode)
-#+END_SRC
-
-- Add =semantic= as a source to =autocomplete= in =c-mode= and =c++-mode=
-#+BEGIN_SRC emacs-lisp
-  (add-hook 'c-mode-hook 'my/add-semantic-to-autocomplete)
-  (add-hook 'c++-mode-hook 'my/add-semantic-to-autocomplete)
-#+END_SRC
-
 ** Dired							      :issue:
 - Issue: use-packages =tramp= to be loaded?
-- Load =all-the-icons-dired= with =dired= and disable =font-lock-mode=
-#+BEGIN_SRC emacs-lisp
-  (defun my/dired-setup ()
-    "Load all-the-icons and disable font-lock-mode"
-    (all-the-icons-dired-mode)
-    (font-lock-mode 0))
-  (add-hook 'dired-mode-hook 'my/dired-setup)
-#+END_SRC
 
 - Set switches for dired to =-lha= for long format (use-packaged by =dired=), human readable file size, show all files and list directories first
 #+BEGIN_SRC emacs-lisp
@@ -430,41 +317,9 @@
   (put 'dired-find-alternate-file 'disabled nil)
 #+END_SRC
 
-- Bind =dired-find-alternate-file= to =a= and =dired-find-file= to
-  =Enter= (switch the keys for the respective funtions)
-#+BEGIN_SRC emacs-lisp
-;;  (add-hook 'dired-mode-hook (lambda () 
-;;                               (local-set-key (kbd "RET") 'dired-find-alternate-file)
-;;                               (local-set-key (kbd "a") 'dired-find-file)))
-#+END_SRC
-
 - Don't truncate long lines in dired mode
 #+BEGIN_SRC emacs-lisp
   (add-hook 'dired-mode-hook (lambda () (toggle-truncate-lines t)))
-#+END_SRC
-
-** Java mode
-- Load =yasnippet= with =java-mode=
-#+BEGIN_SRC emacs-lisp
-  (add-hook 'java-mode-hook 'yas-minor-mode)
-#+END_SRC
-
-- Add =semantic= as a source to =autocomplete= in =java-mode=
-#+BEGIN_SRC emacs-lisp
-  (add-hook 'java-mode-hook 'my/add-semantic-to-autocomplete)
-#+END_SRC
-
-- Use unicode symbols for some operators with =prettify-symbols-mode=
-#+BEGIN_SRC emacs-lisp
-  (defun my/pretty-java()
-    (prettify-symbols-mode)
-    (my/pretty-less-equal)
-    (my/pretty-greater-equal)
-    (my/pretty-not-equal)
-    (my/pretty-and)
-    (my/pretty-or))
-
-  (add-hook 'java-mode-hook 'my/pretty-java)
 #+END_SRC
 
 ** LaTeX / AucTeX
