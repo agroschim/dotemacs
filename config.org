@@ -221,15 +221,17 @@
 ** expand-region
 - IntelliJ IDEA like selecting regions by semantic units
 #+BEGIN_SRC emacs-lisp
-  (use-package expand-region)
-  (global-set-key (kbd "C-=") 'er/expand-region)
+  (use-package expand-region
+    :init
+    (global-set-key (kbd "C-=") 'er/expand-region))
 #+END_SRC
 
 ** ido
 - Enable =ido= for better =C-x C-f= and =C-x b=
 #+BEGIN_SRC emacs-lisp
-  (use-package ido)
-  (ido-mode t)
+  (use-package ido
+    :init
+    (ido-mode t))
 #+END_SRC
 
 ** iedit
@@ -253,25 +255,28 @@
 ** multiple-cursors
 - Multiple cursors for Emacs
 #+begin_src emacs-lisp
-  (use-package multiple-cursors)
-  (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-  (global-set-key (kbd "C-c C-<") 'mc/-all-like-this)
+  (use-package multiple-cursors
+    :init
+    (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+    (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+    (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+    (global-set-key (kbd "C-c C-<") 'mc/-all-like-this))
 #+end_src
 
 ** nasm-mode
 - Syntax highlighting for NASM assembler
 #+BEGIN_SRC emacs-lisp
-  (use-package nasm-mode)
-  (add-to-list 'auto-mode-alist '("\\.asm" . nasm-mode))
+  (use-package nasm-mode
+    :init
+    (add-to-list 'auto-mode-alist '("\\.asm" . nasm-mode)))
 #+END_SRC
 
 ** powerline
 - Emacs fork of VIM's powerline, a better looking, more informative status bar
 #+BEGIN_SRC emacs-lisp
-  (use-package powerline)
-  (powerline-default-theme)
+  (use-package powerline
+    :init
+    (powerline-default-theme))
 #+END_SRC
 
 ** tramp
@@ -289,15 +294,17 @@
 ** 6502-mode
 - Syntax highlighting for 6502 assembler ([[http://www.tomseddon.plus.com/beeb/6502-mode.html][6502-mode]])
 #+BEGIN_SRC emacs-lisp
-  (use-package 6502-mode)
-  (add-to-list 'auto-mode-alist '("\\.s65" . 6502-mode))
+  (use-package 6502-mode
+    :init
+    (add-to-list 'auto-mode-alist '("\\.s65" . 6502-mode)))
 #+END_SRC
 
 ** qb-mode
 - Syntax highlighting in QBasic files made by me
 #+BEGIN_SRC emacs-lisp
-  (use-package qb-mode)
-  (add-to-list 'auto-mode-alist '("\\.BAS" . qb-mode))
+  (use-package qb-mode
+    :init
+    (add-to-list 'auto-mode-alist '("\\.BAS" . qb-mode)))
 #+END_SRC
 
 * Major mode configuration
@@ -305,9 +312,9 @@
 - All manually added hooks go here as well
 
 ** Dired							      :issue:
-- Issue: use-packages =tramp= to be loaded?
+- Issue: requires =tramp= to be loaded?
 
-- Set switches for dired to =-lha= for long format (use-packaged by =dired=), human readable file size, show all files and list directories first
+- Set switches for dired to =-lha= for long format (required by =dired=), human readable file size, show all files and list directories first
 #+BEGIN_SRC emacs-lisp
   (setq-default dired-listing-switches "-lha --group-directories-first")
 #+END_SRC
