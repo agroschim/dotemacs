@@ -138,7 +138,7 @@
 
 - For working dead keys
 #+BEGIN_SRC emacs-lisp
-  (require 'iso-transl)
+  (use-package iso-transl)
 #+END_SRC
 
 - Ask for =y-or-n= insted of =yes-or-no=
@@ -184,14 +184,14 @@
 ** all-the-icons
 - Load up and configure =all-the-icons=
 #+BEGIN_SRC emacs-lisp
-  (require 'all-the-icons)
+  (use-package all-the-icons)
 #+END_SRC
 
 ** autocomplete
 - Set up =autocomplete=
 #+BEGIN_SRC emacs-lisp
-  (require 'auto-complete)
-  (require 'auto-complete-config)
+  (use-package auto-complete)
+  (use-package auto-complete-config)
   (ac-config-default)
 #+END_SRC
 
@@ -235,7 +235,7 @@
 ** expand-region
 - IntelliJ IDEA like selecting regions by semantic units
 #+BEGIN_SRC emacs-lisp
-  (require 'expand-region)
+  (use-package expand-region)
   (global-set-key (kbd "C-=") 'er/expand-region)
 #+END_SRC
 
@@ -248,14 +248,14 @@
 ** ido
 - Enable =ido= for better =C-x C-f= and =C-x b=
 #+BEGIN_SRC emacs-lisp
-  (require 'ido)
+  (use-package ido)
   (ido-mode t)
 #+END_SRC
 
 ** iedit
 - Edit occurances of the same text simultaniously
 #+BEGIN_SRC emacs-lisp
-  (require 'iedit)
+  (use-package iedit)
 #+END_SRC
 
 ** imaxima
@@ -281,7 +281,7 @@
 ** multiple-cursors
 - Multiple cursors for Emacs
 #+begin_src emacs-lisp
-  (require 'multiple-cursors)
+  (use-package multiple-cursors)
   (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
@@ -291,7 +291,7 @@
 ** nasm-mode
 - Syntax highlighting for NASM assembler
 #+BEGIN_SRC emacs-lisp
-  (require 'nasm-mode)
+  (use-package nasm-mode)
   (add-to-list 'auto-mode-alist '("\\.asm" . nasm-mode))
 #+END_SRC
 
@@ -324,7 +324,7 @@
 ** powerline
 - Emacs fork of VIM's powerline, a better looking, more informative status bar
 #+BEGIN_SRC emacs-lisp
-  (require 'powerline)
+  (use-package powerline)
   (powerline-default-theme)
 #+END_SRC
 
@@ -344,20 +344,20 @@
 ** tramp
 - Load =tramp=
 #+BEGIN_SRC emacs-lisp
-  (require 'tramp)
+  (use-package tramp)
 #+END_SRC
 
 ** yasnippet
 - Template system for Emacs
 #+BEGIN_SRC emacs-lisp
-  (require 'yasnippet)
+  (use-package yasnippet)
   (yas-reload-all)
 #+END_SRC
 
 ** whitespace
 - Set up =whitespace=, a minor-mode for displaying whitespace characters
 #+BEGIN_SRC emacs-lisp
-  (require 'whitespace)
+  (use-package whitespace)
 #+END_SRC
 
 ** ztree
@@ -369,14 +369,14 @@
 ** 6502-mode
 - Syntax highlighting for 6502 assembler ([[http://www.tomseddon.plus.com/beeb/6502-mode.html][6502-mode]])
 #+BEGIN_SRC emacs-lisp
-  (require '6502-mode)
+  (use-package 6502-mode)
   (add-to-list 'auto-mode-alist '("\\.s65" . 6502-mode))
 #+END_SRC
 
 ** qb-mode
 - Syntax highlighting in QBasic files made by me
 #+BEGIN_SRC emacs-lisp
-  (require 'qb-mode)
+  (use-package qb-mode)
   (add-to-list 'auto-mode-alist '("\\.BAS" . qb-mode))
 #+END_SRC
 
@@ -388,7 +388,7 @@
 - Add system header files to the list of sources for =autocomplete= to parse when =c-mode= or =c++-mode= is loaded
 #+BEGIN_SRC emacs-lisp
   (defun my/ac-c-header-init ()
-    (require 'auto-complete-c-headers)
+    (use-package auto-complete-c-headers)
     (add-to-list 'ac-sources 'ac-source-c-headers)
     (add-to-list 'achead:include-directories '"/usr/lib/gcc/x86_64-pc-linux-gnu/13.1.1/include")
     (add-to-list 'achead:include-directories '"/usr/lib/gcc/x86_64-pc-linux-gnu/13.1.1/include-fixed")
@@ -410,7 +410,7 @@
 #+END_SRC
 
 ** Dired							      :issue:
-- Issue: requires =tramp= to be loaded?
+- Issue: use-packages =tramp= to be loaded?
 - Load =all-the-icons-dired= with =dired= and disable =font-lock-mode=
 #+BEGIN_SRC emacs-lisp
   (defun my/dired-setup ()
@@ -420,7 +420,7 @@
   (add-hook 'dired-mode-hook 'my/dired-setup)
 #+END_SRC
 
-- Set switches for dired to =-lha= for long format (required by =dired=), human readable file size, show all files and list directories first
+- Set switches for dired to =-lha= for long format (use-packaged by =dired=), human readable file size, show all files and list directories first
 #+BEGIN_SRC emacs-lisp
   (setq-default dired-listing-switches "-lha --group-directories-first")
 #+END_SRC
@@ -551,7 +551,7 @@
 *** Export settings
 - Enable beamer export
 #+BEGIN_SRC emacs-lisp
-  (require 'ox-beamer)
+  (use-package ox-beamer)
 #+END_SRC
 
 - Don't show personal information in the footer of exported html files
