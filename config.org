@@ -80,6 +80,12 @@
 - Don't show startup screen (obsolete: now set in [[file:custom.el][custom.el]] as =(inhibit-startup-screen t)=)
 
 *** Theming
+- Set theme to =monokai= (this gives Emacs a Sublime Text like apparence)
+#+begin_src emacs-lisp
+  (use-package monokai-theme
+    :init 
+#+end_src
+
 - Use same height for all faces
 #+BEGIN_SRC emacs-lisp
   (setq monokai-height-plus-1 1.0
@@ -94,10 +100,10 @@
   (setq monokai-gray "#3E3D31")
 #+END_SRC
 
-- Set theme to =monokai= (this gives Emacs a Sublime Text like apparence)
-#+BEGIN_SRC emacs-lisp
-  (load-theme 'monokai t)
-#+END_SRC
+- load theme
+#+begin_src emacs-lisp
+  (load-theme 'monokai t))
+#+end_src
 
 *** Windows
 - Window ruleset stolen from [[https://protesilaos.com/dotemacs][Prot]]
@@ -222,9 +228,21 @@
 - IntelliJ IDEA like selecting regions by semantic units
 #+BEGIN_SRC emacs-lisp
   (use-package expand-region
-    :init
-    (global-set-key (kbd "C-=") 'er/expand-region))
+    :bind
+    ("C-=" . er/expand-region))
 #+END_SRC
+
+** flycheck
+- On-the-fly syntax checking
+#+begin_src emacs-lisp
+  (use-package flycheck)
+#+end_src
+
+** graphviz-dot-mode
+- Package for working with Graphviz DOT-format files
+#+begin_src emacs-lisp
+  (use-package graphviz-dot-mode)
+#+end_src
 
 ** ido
 - Enable =ido= for better =C-x C-f= and =C-x b=
@@ -240,27 +258,37 @@
   (use-package iedit)
 #+END_SRC
 
+** json-mode
+- Package for working with json files
+#+begin_src emacs-lisp
+  (use-package json-mode)
+#+end_src
+
 ** magit
 - Bind =magit-satus= to =C-x g=
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-x g") 'magit-status)
+  (use-package magit
+    :bind
+    ("C-x g" . magit-status))
 #+END_SRC
 
 ** move-text
 - Move the current line using M-up / M-down
 #+BEGIN_SRC emacs-lisp
-  (move-text-default-bindings)
+  (use-package move-text
+    :init
+    (move-text-default-bindings))
 #+END_SRC
 
 ** multiple-cursors
 - Multiple cursors for Emacs
 #+begin_src emacs-lisp
   (use-package multiple-cursors
-    :init
-    (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-    (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-    (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-    (global-set-key (kbd "C-c C-<") 'mc/-all-like-this))
+    :bind
+    ("C-S-c C-S-c" . mc/edit-lines)
+    ("C->" . mc/mark-next-like-this)
+    ("C-<" . mc/mark-previous-like-this)
+    ("C-c C-<" . mc/-all-like-this))
 #+end_src
 
 ** nasm-mode
@@ -271,6 +299,12 @@
     (add-to-list 'auto-mode-alist '("\\.asm" . nasm-mode)))
 #+END_SRC
 
+** pomidor
+- simple pomodoro technique timer
+#+begin_src emacs-lisp
+  (use-package pomidor)
+#+end_src
+
 ** powerline
 - Emacs fork of VIM's powerline, a better looking, more informative status bar
 #+BEGIN_SRC emacs-lisp
@@ -279,10 +313,22 @@
     (powerline-default-theme))
 #+END_SRC
 
+** rainbow-mode
+- sets background color to strings that match color names
+#+begin_src emacs-lisp
+  (use-package rainbow-mode)
+#+end_src
+
 ** tramp
 - Load =tramp=
 #+BEGIN_SRC emacs-lisp
   (use-package tramp)
+#+END_SRC
+
+** web-beautify
+- Formatting package for HTML, CSS and JavaScript/JSON
+#+BEGIN_SRC emacs-lisp
+  (use-package web-beautify)
 #+END_SRC
 
 ** whitespace
@@ -313,6 +359,12 @@
 
 ** Dired							      :issue:
 - Issue: requires =tramp= to be loaded?
+
+- Inserts the subdirectory as a separate listing in the active dired
+  buffer
+#+begin_src emacs-lisp
+  (use-package dired-subtree)
+#+end_src
 
 - Set switches for dired to =-lha= for long format (required by =dired=), human readable file size, show all files and list directories first
 #+BEGIN_SRC emacs-lisp
@@ -411,9 +463,11 @@
 #+END_SRC
 
 *** Export settings
-- Enable beamer export
+- Enable export for beamer, mediawiki, and Twitter Bootstrap
 #+BEGIN_SRC emacs-lisp
   (use-package ox-beamer)
+  (use-package ox-mediawiki)
+  (use-package ox-twbs)
 #+END_SRC
 
 - Don't show personal information in the footer of exported html files
